@@ -193,13 +193,13 @@ function highLowTwo(arr) {
         secondLowest: Infinity
     };
 
-    return arr.reduce(findHighTwolowTwo,obj);
+    return arr.reduce(findHighTwolowTwo, obj);
 
 }
 
 //function assumes there are at least 4 elements in array
 function findHighTwolowTwo(prev, curr) {
-    
+
     if (curr > prev.highest) {
         prev.secondHighest = prev.highest
         prev.highest = curr;
@@ -413,20 +413,44 @@ if (!nameIndex[person3.firstName]) {
 }
 */
 
+//initialize = [];
 
+
+function peopleByFName(arr) {
+
+
+    return peopleArr.reduce(createPersonByFName, initialize);
+}
 
 function createPersonByFName(prev, curr) {
 
-    if (prev) {
-        prev[curr.id] = {
+    if (!prev[curr.firstName]) {
+        prev[curr.firstName] = [];
+
+        prev[curr.firstName].push(
+            {
             id: curr.id,
             firstName: curr.firstName,
             lastName: curr.lastName,
-            email: curr.email
-        };
+            email: curr.email 
+            }
+        );
 
+    }
+    else {
+        
+        prev[curr.firstName].push(
+            {
+            id: curr.id,
+            firstName: curr.firstName,
+            lastName: curr.lastName,
+            email: curr.email 
+            }
+        );
     }
 
 
     return prev;
 }
+
+console.log(peopleByFName(peopleArr));
