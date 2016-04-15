@@ -70,3 +70,30 @@ function truthy (val) {
 
 var arrx = [2,3,-1,"","ksdjflsjd",false,0];
 //console.log(filterArray(arrx,truthy));
+
+
+/*
+Exercise 4
+
+Write a function called longestWord that takes a string as argument, and returns the longest word in the string. You should use Array.prototype.reduce to do your work.
+
+Hint: You can use String.prototype.split to split the string into an array of words.
+*/
+
+function longestWord (str) {
+    
+    var arr = str.split(" ");
+    return arr.reduce(findLongest,"");
+    //return arr;
+}
+
+function findLongest (prev,curr) {
+    if (curr.length >= prev.length) {
+        return curr;
+    }
+    return curr;
+}
+
+var a = "I am not impressed with your performance";
+
+console.log(longestWord(a));
