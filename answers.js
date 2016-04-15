@@ -186,23 +186,19 @@ For example, starting with [1, -10, 20, 40, 5], your function should return:
 
 function highLowTwo(arr) {
 
-        var obj = {
+    var obj = {
         highest: -Infinity,
         secondHighest: -Infinity,
         lowest: Infinity,
-        secondLowest : Infinity
+        secondLowest: Infinity
     };
 
-    return arr.reduce(findHighTwolowTwo, {
-        highest: -Infinity,
-        secondHighest: -Infinity,
-        lowest: Infinity,
-        secondLowest : Infinity
-    });
+    return arr.reduce(findHighTwolowTwo,obj);
 
 }
 
-function findHighTwolowTwo (prev,curr) {
+//function assumes there are at least 4 elements in array
+function findHighTwolowTwo(prev, curr) {
     
     if (curr > prev.highest) {
         prev.secondHighest = prev.highest
@@ -211,7 +207,7 @@ function findHighTwolowTwo (prev,curr) {
     else if (curr > prev.secondHighest) {
         prev.secondHighest = curr;
     }
-    
+
     if (curr < prev.lowest) {
         prev.secondLowest = prev.lowest;
         prev.lowest = curr;
@@ -244,26 +240,26 @@ For example, with input "hello world", the output should be:
 NOTE: Unlike arrays, objects don’t have any ordering on them. When you print your object on the console, your keys may be displayed in a different order, and it does not matter.
 */
 
-function countChars (str) {
+function countChars(str) {
     var obj = {};
-    var arr = myStr.replace(" ","").split("");
-    
-    return arr.reduce(tallyChars,{});
+    var arr = myStr.replace(" ", "").split("");
+
+    return arr.reduce(tallyChars, {});
 }
 
-function tallyChars (tally,curr) {
-    
-    if(!tally[curr]) {
+function tallyChars(tally, curr) {
+
+    if (!tally[curr]) {
         tally[curr] = 1;
     }
     else {
-        tally[curr] = tally[curr] +1;
+        tally[curr] = tally[curr] + 1;
     }
     return tally;
 }
 
 var myStr = "hello world";
-console.log(countChars(myStr));
+//console.log(countChars(myStr));
 
 
 
@@ -330,3 +326,107 @@ Write a function called peopleById that takes an array of people and returns an 
 
 You have effectively created what we call an index, not unlike the one you have in your phonebook.
 */
+
+var peopleArr = [{
+    "id": "KeXoYg92is",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john@smith.com"
+}, {
+    "id": "NkALmSWtUp",
+    "firstName": "Donald",
+    "lastName": "Duck",
+    "email": "don@disney.com"
+}, {
+    "id": "m7LPbJYSUg",
+    "firstName": "John",
+    "lastName": "Vader",
+    "email": "vader@darkside.com"
+}]
+
+var initialize = {}
+
+function peopleById(arr) {
+
+
+    return peopleArr.reduce(createPerson, initialize);
+}
+
+function createPerson(prev, curr) {
+
+    if (prev) {
+        prev[curr.id] = {
+            id: curr.id,
+            firstName: curr.firstName,
+            lastName: curr.lastName,
+            email: curr.email
+        };
+
+    }
+
+
+    return prev;
+}
+
+//console.log(peopleById(peopleArr));
+
+
+
+/*
+Exercise 10
+
+Expanding on the previous exercise, this time we are going to create an index on first names. Notice how in the previous exercise, each ID was unique. In this case, two people have the same first name.
+
+We want to create a function called peopleByFirstName that will take an array of people and return something that looks like this:
+
+{
+  "John": [
+    {
+      "id": "KeXoYg92is",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john@smith.com"
+    },
+    {
+      "id": "m7LPbJYSUg",
+      "firstName": "John",
+      "lastName": "Vader",
+      "email": "vader@darkside.com"
+    }
+  ],
+  "Donald": [
+    {
+      "id": "NkALmSWtUp",
+      "firstName": "Donald",
+      "lastName": "Duck",
+      "email": "don@disney.com"
+    }
+  ]
+}
+You have effectively created an index on first name. This lets you find all people called, say, “John” without having to look through the whole results.
+
+
+if (!nameIndex[person3.firstName]) {
+  nameIndex[person3.firstName] = [person3]
+} else {
+  nameIndex[person3.firstName].push(person3)
+}
+*/
+
+
+
+function createPersonByFName(prev, curr) {
+
+    if (prev) {
+        prev[curr.id] = {
+            id: curr.id,
+            firstName: curr.firstName,
+            lastName: curr.lastName,
+            email: curr.email
+        };
+
+    }
+
+
+    return prev;
+}
