@@ -41,3 +41,32 @@ function retPositives (num) {
 }
 
 //console.log(getPositives(x));
+
+
+
+/*
+Exercise 3
+
+Write a function called filterArray that takes an array AND a function as arguments. 
+
+Your filter function should return a new array that contains only the elements where the passed function returns a truthy value.
+
+NOTE: You are allowed to use Array.prototype.filter to answer this question.
+
+NOTE 2: This is a bit of a trick question, the answer is a one-liner :)
+*/
+
+//var newArr2 = [];
+
+function filterArray (arr, fnct) {
+    
+    return arr.filter(fnct);
+}
+
+function truthy (val) {
+    if (val)
+    { return val;}
+}
+
+var arrx = [2,3,-1,"","ksdjflsjd",false,0];
+//console.log(filterArray(arrx,truthy));
