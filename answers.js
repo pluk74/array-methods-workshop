@@ -110,15 +110,15 @@ Hint 2: You can create an array of vowels and use Array.prototype.indexOf to che
 */
 
 function countVowels(str) {
-    
+
     var arry = str.split("");
-    return arry.reduce(isVowel,0);
+    return arry.reduce(isVowel, 0);
 }
 
-function isVowel(prev,curr) {
-    
-    if (["a","e","i","o","u"].indexOf(curr.toLowerCase()) > -1) {
-        return prev+1;
+function isVowel(prev, curr) {
+
+    if (["a", "e", "i", "o", "u"].indexOf(curr.toLowerCase()) > -1) {
+        return prev + 1;
     }
     return prev;
 }
@@ -138,20 +138,23 @@ Hint: Javascript has a special value called Infinity, which is higher than any o
 
 */
 
-function highLow (arr) {
-    
+function highLow(arr) {
+
     var obj = {
-        highest:-Infinity,
-        lowest:Infinity
+        highest: -Infinity,
+        lowest: Infinity
     };
-    
-    return arr.reduce(findHighestAndLowest,{highest:-Infinity,lowest:Infinity});
-    
- 
+
+    return arr.reduce(findHighestAndLowest, {
+        highest: -Infinity,
+        lowest: Infinity
+    });
+
+
 }
 
-function findHighestAndLowest (prev,curr) {
-    
+function findHighestAndLowest(prev, curr) {
+
     if (curr >= prev.highest) {
         prev.highest = curr;
     }
@@ -162,6 +165,62 @@ function findHighestAndLowest (prev,curr) {
 }
 
 
-//var numArr = [1, -10, 20, 40, 5];
+
 
 //console.log(highLow(numArr));
+
+/*
+Exercise 7
+
+Expanding on exercise 6, write a function called highLowTwo that takes an array of numbers, and returns the higest, second highest, lowest, and second lowest numbers.
+
+For example, starting with [1, -10, 20, 40, 5], your function should return:
+
+{
+  "highest": 40,
+  "secondHighest": 20,
+  "lowest": -10,
+  "secondLowest": 5
+}
+*/
+
+function highLowTwo(arr) {
+
+        var obj = {
+        highest: -Infinity,
+        secondHighest: -Infinity,
+        lowest: Infinity,
+        secondLowest : Infinity
+    };
+
+    return arr.reduce(findHighTwolowTwo, {
+        highest: -Infinity,
+        secondHighest: -Infinity,
+        lowest: Infinity,
+        secondLowest : Infinity
+    });
+
+}
+
+function findHighTwolowTwo (prev,curr) {
+    
+    if (curr > prev.highest) {
+        prev.secondHighest = prev.highest
+        prev.highest = curr;
+    }
+    else if (curr > prev.secondHighest) {
+        prev.secondHighest = curr;
+    }
+    
+    if (curr < prev.lowest) {
+        prev.secondLowest = prev.lowest;
+        prev.lowest = curr;
+    }
+    else if (curr < prev.secondLowest) {
+        prev.secondLowest = curr;
+    }
+    return prev;
+}
+
+var numArr = [1, -10, 20, 40, 5];
+console.log(highLowTwo(numArr));
